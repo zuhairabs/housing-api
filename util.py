@@ -1,6 +1,8 @@
-import pickle
+from sklearn.externals import joblib
 import json
 import numpy as np
+import requests
+from urllib.request import urlopen
 
 __locations = None
 __data_columns = None
@@ -27,14 +29,13 @@ def load_saved_artifacts():
     global  __data_columns
     global __locations
 
-    with open("./artifacts/columns.json", "r") as f:
-        __data_columns = json.load(f)['data_columns']
-        __locations = __data_columns[3:]  # first 3 columns are sqft, bath, bhk
+    url = requests.get("https://raw.githubusercontent.com/zuhairabs/housing-api/main/artifacts/columns.json")
+    __data_columns = url.json()['data_columns']
+    __locations = __data_columns[3:]  # first 3 columns are sqft, bath, bhk
 
     global __model
     if __model is None:
-        with open('./artifacts/banglore_home_prices_model.pickle', 'rb') as f:
-            __model = pickle.load(f)
+        __model = joblib.load(urlopen("https://github.com/zuhairabs/housing-api/blob/main/artifacts/banglore_home_prices_model.pickle?raw=true"))
     print("loading saved artifacts...done")
 
 def get_location_names():
