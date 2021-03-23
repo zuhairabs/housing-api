@@ -5,23 +5,20 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def home():
-    response = jsonify({
-        'Get Location Names': '/get_location_names',
-		'Predict Prices':'/predict_home_price'
-    })
-    response.headers.add('Access-Control-Allow-Origin', '*')
-
     return """
 		<!DOCTYPE html>
 <html>
    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
    </head>
    <body style="background: #eee; margin: 0; padding: 0">
       <div style="margin-left: 10%; background: #fff; width: 80%; border-radius: 12px; max-height: 100%">
          <h1 style="font-family: 'Poppins', sans-serif; text-align: center; padding: 1rem;">
+         <img src="https://github.com/zuhairabs/housing-framework7/raw/main/img/favicon512.png" width="10%">&nbsp;
          Housing API
          <h1>
+         <a onMouseOut="this.style.color='#121212'" onMouseOver="this.style.color='crimson'" href="https://github.com/zuhairabs/housing-api/tree/main/model" target="_blank" style="font-size: 16px; border-radius: 10px; font-family: Poppins; text-decoration: none; color: #121212; background: #dadada; padding: 10px; margin: 1rem; display: flex; justify-content: center;">Predicting Models &nbsp;<img width="20px" src="https://cdn2.iconfinder.com/data/icons/pittogrammi/142/95-512.png"></a>
          <h3 style="font-family: 'Poppins', sans-serif; margin-left: 1rem; padding: 1rem;">Get Location Names: </h3>
          <p style="overflow-x: scroll; font-size: 15px; color: rgb(171, 178, 191); background: #121212; font-family: 'Poppins', sans-serif; padding: 1rem; margin: 1rem; border-radius: 10px">
             //javascript implementation
