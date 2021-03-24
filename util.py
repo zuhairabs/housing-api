@@ -47,11 +47,4 @@ def get_location_names():
 def get_data_columns():
     return __data_columns
 
-if __name__ == '__main__':
-    load_saved_artifacts()
-    print(get_location_names())
-    print(get_estimated_price('1st Phase JP Nagar',1000, 3, 3))
-    print(get_estimated_price('1st Phase JP Nagar', 1000, 2, 2))
-    print(get_estimated_price('Kalhalli', 1000, 2, 2)) # other location
-    print(get_estimated_price('Ejipura', 1000, 2, 2))  # other location
-    sys.stdout.flush()
+load_saved_artifacts()
