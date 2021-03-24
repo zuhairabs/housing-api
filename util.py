@@ -3,6 +3,7 @@ import json
 import numpy as np
 import requests
 from urllib.request import urlopen
+import sys
 
 __locations = None
 __data_columns = None
@@ -32,6 +33,8 @@ def load_saved_artifacts():
     url = requests.get("https://raw.githubusercontent.com/zuhairabs/housing-api/main/artifacts/columns.json")
     __data_columns = url.json()['data_columns']
     __locations = __data_columns[3:]  # first 3 columns are sqft, bath, bhk
+    print(__locations)
+    sys.stdout.flush()
 
     global __model
     if __model is None:
@@ -51,3 +54,4 @@ if __name__ == '__main__':
     print(get_estimated_price('1st Phase JP Nagar', 1000, 2, 2))
     print(get_estimated_price('Kalhalli', 1000, 2, 2)) # other location
     print(get_estimated_price('Ejipura', 1000, 2, 2))  # other location
+    sys.stdout.flush()
