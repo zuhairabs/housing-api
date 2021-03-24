@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import util
+import sys
 
 app = Flask(__name__)
 
@@ -18,7 +19,7 @@ def home():
          <img src="https://github.com/zuhairabs/housing-framework7/raw/main/img/favicon512.png" width="10%">&nbsp;
          Housing API
          <h1>
-         <a onMouseOut="this.style.color='#121212'" onMouseOver="this.style.color='crimson'" href="https://github.com/zuhairabs/housing-api/tree/main/model" target="_blank" style="font-size: 16px; border-radius: 10px; font-family: Poppins; text-decoration: none; color: #121212; background: #dadada; padding: 10px; margin: 1rem; display: flex; justify-content: center;">Predicting Models &nbsp;<img width="20px" src="https://cdn2.iconfinder.com/data/icons/pittogrammi/142/95-512.png"></a>
+         <a onMouseOut="this.style.background='#dadada';this.style.color='#121212'" onMouseOver="this.style.background='crimson';this.style.color='#fafafa'" href="https://github.com/zuhairabs/housing-api/tree/main/model" target="_blank" style="font-size: 16px; border-radius: 10px; font-family: Poppins; text-decoration: none; color: #121212; background: #dadada; padding: 10px; margin: 1rem; display: flex; justify-content: center;">Predicting Models &nbsp;<img width="20px" src="https://cdn2.iconfinder.com/data/icons/pittogrammi/142/95-512.png"></a>
          <h3 style="font-family: 'Poppins', sans-serif; margin-left: 1rem; padding: 1rem;">Get Location Names: </h3>
          <p style="overflow-x: scroll; font-size: 15px; color: rgb(171, 178, 191); background: #121212; font-family: 'Poppins', sans-serif; padding: 1rem; margin: 1rem; border-radius: 10px">
             //javascript implementation
@@ -59,6 +60,19 @@ def get_location_names():
         'locations': util.get_location_names()
     })
     response.headers.add('Access-Control-Allow-Origin', '*')
+    print(util.get_location_names())
+    sys.stdout.flush()
+
+    return response
+ 
+@app.route('/get_data_columns', methods=['GET'])
+def get_data_columns():
+    response = jsonify({
+        'locations': util.get_data_columns()
+    })
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    print(util.get_data_columns())
+    sys.stdout.flush()
 
     return response
 
